@@ -2,13 +2,16 @@ import { Alert, StyleSheet, Text, View } from 'react-native';
 import Button from '../../components/Button';
 import { useState } from 'react';
 import Input from '../../components/Input';
+import ButtonAlphabet from '../../components/ButtonAlphabet';
 
 export default function HangmanGame() {
   const [corretLetter, setCorretLetter] = useState<string[]>([]); 
-  const [prevLetters, setPrevLetters] = useState<string[]>([]); 
+  const [disabledLetters, setDisabledLetters] = useState<string[]>();
   const [attempts, setAtempts] = useState<number>(0);
-  const [userLetter, setUserLetter] = useState<string>(); 
+  // const [userLetter, setUserLetter] = useState<string>(); 
   const [wordSplit, setWorldSplit] = useState<string[]>([]);
+
+  const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
   const words = [
     "abacaxi", "computador", "elefante", "girassol", "montanha", "chaveiro", "livraria", "bicicleta", "pipoca",
@@ -38,33 +41,46 @@ export default function HangmanGame() {
     })
   }
 
-  function compareWords(){
+  function compareWords(e : string){
     const newLetters = [...corretLetter];
     for(let i = 0; i < wordSplit.length; i++ ){
-        if(wordSplit[i] === userLetter){
-          newLetters[i] = userLetter;
+        if(wordSplit[i] === e){
+          newLetters[i] = e;
       }}
       setCorretLetter(newLetters);
-  }
-
+      setAtempts(attempts + 1);
+      setDisabledLetters(prev => {
+        if(prev === undefined){
+          return;
+        }
+        if (!prev.includes(e)) {
+          return [...prev, e]; 
+        }
+        return prev;})
+};
+  
   return (
     <View style={styles.container}>
         { wordSplit.length === 0 ? 
         <Button onPress={() => randomWord()} title="Começar"/> :
         <View>
           <View>
+            {/*Imagem da forca */}
+          </View>
+          <View>
             {wordSplit.map((_, index) => (
               <Text key={index}>{ corretLetter[index] === "-" ? "_" : corretLetter[index] }</Text>
             ))}
           </View>
           <View>
-            <Input onChangeText={(e) => {setUserLetter(e.toLowerCase())}} maxLength={1}/>
+            {/* <Input onChangeText={(e) => {setUserLetter(e.toLowerCase())}} maxLength={1}/> */}
             <View>
-              <Button onPress={() => compareWords()} title="Enviar"/>  
+              {alphabet.map((e,index) => (
+                <ButtonAlphabet title={e} key={`${index}Alphabet`} onPress={() => compareWords(e)}  disabled={disabledLetters === undefined ? false : disabledLetters.includes(e)}/>
+              ))}
               <Button onPress={() => displayWord()} title="Mostrar"/>
             </View> 
           </View> 
- 
         </View>
         }
     </View>
