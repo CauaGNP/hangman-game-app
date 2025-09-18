@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     marginVertical: 8,
+    gap: 6,
   },
   disable: {
     backgroundColor: "#9e9d9dff",
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
   word: {
     flexDirection: "row",
     justifyContent: "center",
+    gap: 8,
     paddingVertical: 8,
   },
   hangman: {

@@ -92,7 +92,7 @@ export default function HangmanGame() {
     setCorretLetter((prev) => {
       const newLetters = [...prev];
       for (let i = 0; i < num; i++) {
-        newLetters[i] = "-";
+        newLetters[i] = "_";
       }
       return newLetters;
     });
@@ -134,7 +134,7 @@ export default function HangmanGame() {
             <View style={styles.word}>
               {wordSplit.map((_, index) => (
                 <Text key={index}>
-                  {corretLetter[index] === "-" ? "_" : corretLetter[index]}
+                  {corretLetter[index] === "_" ? "_" : corretLetter[index]}
                 </Text>
               ))}
             </View>
@@ -143,6 +143,8 @@ export default function HangmanGame() {
           <View>
             {errors === 6 ? (
               <Text style={styles.winLoserText}>Você perdeu!!</Text>
+            ) : !corretLetter.includes("_") ? (
+              <Text style={styles.winLoserText}>Você Ganhou!!</Text>
             ) : (
               <View style={styles.keyboard}>
                 {alphabet.map((e, index) => (
