@@ -57,6 +57,21 @@ export default function HangmanGame() {
     "brinquedo",
     "escada",
     "telefone",
+    "guitarra",
+    "praia",
+    "mochila",
+    "sapato",
+    "tomate",
+    "navio",
+    "oculos",
+    "cadeira",
+    "bola",
+    "pente",
+    "camiseta",
+    "lousa",
+    "borracha",
+    "tesoura",
+    "carro",
   ];
 
   function randomWord() {
