@@ -6,17 +6,17 @@ export default function Person({ errors }: { errors: number }) {
   return (
     <View style={styles.container}>
       <View style={styles.halfBorderTop} />
-      {errors >= 1 ? <Body.Head /> : undefined}
+      {errors >= 1 && <Body.Head />}
 
       <View style={styles.trunk}>
-        {errors >= 3 ? <Body.LeftArm /> : undefined}
-        {errors >= 2 ? <Body.Trunk /> : undefined}
-        {errors >= 4 ? <Body.RightArm /> : undefined}
+        {errors >= 3 && <Body.LeftArm />}
+        {errors >= 2 && <Body.Trunk />}
+        {errors >= 4 && <Body.RightArm />}
       </View>
 
       <View style={styles.legs}>
-        {errors >= 6 ? <Body.LeftLeg /> : undefined}
-        {errors >= 5 ? <Body.RightLeg /> : undefined}
+        {errors >= 6 && <Body.LeftLeg />}
+        {errors >= 5 && <Body.RightLeg />}
       </View>
     </View>
   );

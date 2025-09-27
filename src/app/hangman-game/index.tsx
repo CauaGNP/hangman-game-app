@@ -133,8 +133,8 @@ export default function HangmanGame() {
 
             <View style={styles.word}>
               {wordSplit.map((_, index) => (
-                <Text key={index}>
-                  {corretLetter[index] === "_" ? "_" : corretLetter[index]}
+                <Text key={index}> 
+                  trocar ess apoha {corretLetter[index] === "_" ? "_" : corretLetter[index]}
                 </Text>
               ))}
             </View>
