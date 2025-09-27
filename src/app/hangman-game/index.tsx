@@ -82,7 +82,9 @@ export default function HangmanGame() {
   }
 
   function displayWord() {
-    Alert.alert("A palavra foi: ", `${wordSplit}`);
+    if(corretLetter.includes("_")){
+      Alert.alert("A palavra foi: ", `${wordSplit}`);
+    }
     setErrors(0);
     setWorldSplit([]);
     setDisabledLetters([]);
@@ -160,7 +162,7 @@ export default function HangmanGame() {
             )}
             <Button
               onPress={() => displayWord()}
-              title={errors === 6 ? "Recomeçar" : "Desistir"}
+              title={!corretLetter.includes("_") || errors == 6 ? "Recomeçar" : "Desistir"}
             />
           </View>
         </View>
